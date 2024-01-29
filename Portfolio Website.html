@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://127.0.0.1:5500/index.html#about -->
+<html lang="en"><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" id="__tmpScript-587557227" data-added-by-two-seven="1">(function() {
+        window.twoseven = window.twoseven || {};
+      })();</script><script type="text/javascript" id="__tmpScript-153083688" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t)}return s}async function a({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const r=new MutationObserver(async o=>{for(const w of o)if("childList"===w.type){const o=Array.from(w.addedNodes);let d;if(d="check"===n?await a({type:n,value:s},o,t):await i({type:n,value:s},o,t))return r.disconnect(),e(d)}});r.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-279097194" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-282746214" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-84646714" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-756197286" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-650265627" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));const i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-115919408" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-785732322" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-934721259" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-874671098" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-713464203" data-added-by-two-seven="1">(function() {
+        window.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-789823608" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-829365808" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-929210418" data-added-by-two-seven="1">(function() {
+        window.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-777670502" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-620375001" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){const e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};const t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-887406674" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-749302716" data-added-by-two-seven="1">(function() {
+        window.nextTick = function v(){return new Promise(e=>setTimeout(e,0))};
+      })();</script><script type="text/javascript" id="__tmpScript-817392415" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-746805407" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-387140637" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForProp = function u(e,t,n){return new Promise(o=>{if(e[t])return void o();const s=setInterval(()=>{e[t]&&(clearInterval(s),o())},n)})};
+      })();</script><script type="text/javascript" id="__tmpScript-882257132" data-added-by-two-seven="1">(function() {
+        window.twoseven.overrideMethod = function p(e,t,n){const o=e[t].bind(e);e[t]=async function(...e){return await n(...e),o(...e)}};
+      })();</script><script type="text/javascript" id="__tmpScript-668291230" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoTimeUpdate = function g(e,t=3){return new Promise(n=>{let o=0;const s=()=>{++o===t&&(e.removeEventListener("timeupdate",s),n())};e.addEventListener("timeupdate",s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-218415199" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoReadyState = function l(e,t,n=30){return t(e.readyState)?Promise.resolve():new Promise(o=>{const s=setInterval(()=>{t(e.readyState)&&(clearInterval(s),o())},n)})};
+      })();</script><script type="text/javascript" id="__tmpScript-67166871" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoToHaveFutureData = function m(e,...t){return window.twoseven.waitForVideoReadyState(e,e=>e>=3,...t)};
+      })();</script><script type="text/javascript" id="__tmpScript-827441568" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForSameSiteCookies = function f(){return window.twoseven.waitForProp(window.twoseven,"__cookiesUpdated")};
+      })();</script><script type="text/javascript" id="__tmpScript-514765113" data-added-by-two-seven="1">(function() {
+        window.twoseven = window.twoseven || {};
+      })();</script><script type="text/javascript" id="__tmpScript-831535670" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t)}return s}async function a({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const r=new MutationObserver(async o=>{for(const w of o)if("childList"===w.type){const o=Array.from(w.addedNodes);let d;if(d="check"===n?await a({type:n,value:s},o,t):await i({type:n,value:s},o,t))return r.disconnect(),e(d)}});r.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-19196430" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-862152939" data-added-by-two-seven="1">(function() {
+        
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-533083714" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-987092931" data-added-by-two-seven="1">(function() {
+        
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-820689636" data-added-by-two-seven="1">(function() {
+        
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));const i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-817914962" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-218897012" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-930120113" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-759648451" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-652317946" data-added-by-two-seven="1">(function() {
+        window.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-994440269" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-863592329" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-94791440" data-added-by-two-seven="1">(function() {
+        window.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-49134229" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-210883632" data-added-by-two-seven="1">(function() {
+        
+    window.attachHistoryListeners = function d(){const e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};const t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-861447202" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-420519055" data-added-by-two-seven="1">(function() {
+        window.nextTick = function v(){return new Promise(e=>setTimeout(e,0))};
+      })();</script><script type="text/javascript" id="__tmpScript-927501958" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-457025044" data-added-by-two-seven="1">(function() {
+        
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-63107316" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForProp = function u(e,t,n){return new Promise(o=>{if(e[t])return void o();const s=setInterval(()=>{e[t]&&(clearInterval(s),o())},n)})};
+      })();</script><script type="text/javascript" id="__tmpScript-826531853" data-added-by-two-seven="1">(function() {
+        window.twoseven.overrideMethod = function p(e,t,n){const o=e[t].bind(e);e[t]=async function(...e){return await n(...e),o(...e)}};
+      })();</script><script type="text/javascript" id="__tmpScript-934894582" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoTimeUpdate = function g(e,t=3){return new Promise(n=>{let o=0;const s=()=>{++o===t&&(e.removeEventListener("timeupdate",s),n())};e.addEventListener("timeupdate",s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-186012157" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoReadyState = function l(e,t,n=30){return t(e.readyState)?Promise.resolve():new Promise(o=>{const s=setInterval(()=>{t(e.readyState)&&(clearInterval(s),o())},n)})};
+      })();</script><script type="text/javascript" id="__tmpScript-299012726" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForVideoToHaveFutureData = function m(e,...t){return window.twoseven.waitForVideoReadyState(e,e=>e>=3,...t)};
+      })();</script><script type="text/javascript" id="__tmpScript-23556517" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForSameSiteCookies = function f(){return window.twoseven.waitForProp(window.twoseven,"__cookiesUpdated")};
+      })();</script><script type="text/javascript" id="__tmpScript-644892804" data-added-by-two-seven="1">(function() {
+        
+      const modal = document.querySelector('.twoseven-ext-tab-media-modal')
+      const modalCloseBtn = modal.querySelector('.close')
+      function closeModal () {
+        modal.style.display = 'none'
+        const frame = document.querySelector('#twoseven-ext-tab-media-iframe').contentWindow
+        frame.postMessage({
+          __evt_name: 'modal-hide'
+        }, '*')
+      }
+      modalCloseBtn.onclick = closeModal
+
+      window.onmessage = function (e) {
+        if (e.data.__evt_name === 'modal-hide') {
+          closeModal()
+        }
+      }
+
+      window.twoseven.closeTabMediaModal = closeModal
+
+      window.onclick = function (e) {
+        if (e.target.id === 'twoseven-ext-tab-media-modal' && modal.style.display === 'block') {
+            closeModal()
+        }
+      }
+    ;
+      })();</script></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website </title>
+    <!----------CSS Files---------->
+    <link rel="stylesheet" href="./Portfolio Website_files/style.css">
+    <link rel="stylesheet" href="./Portfolio Website_files/color-1.css">
+    <link rel="stylesheet" href="./Portfolio Website_files/all.min.css">
+
+    <!------------style Switcher---------->
+    <link rel="stylesheet" href="./Portfolio Website_files/color-1.css" class="alternate-style" title="color-1" disabled="">
+
+    <link rel="stylesheet" href="./Portfolio Website_files/color-2.css" class="alternate-style" title="color-2" disabled="">
+
+    <link rel="stylesheet" href="./Portfolio Website_files/color-3.css" class="alternate-style" title="color-3" disabled="">
+
+    <link rel="stylesheet" href="./Portfolio Website_files/color-4.css" class="alternate-style" title="color-4" disabled="">
+
+    <link rel="stylesheet" href="./Portfolio Website_files/color-5.css" class="alternate-style" title="color-5" disabled="">
+
+    <link rel="stylesheet" href="./Portfolio Website_files/style-switcher.css">
+
+<link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle"></head>
+<body class="dark">
+    <!--------------Main Container Start------------>
+    <div class="main-container">
+        <!---------Aside start------->
+        <div class="aside">
+          <div class="logo">
+            <a href="http://127.0.0.1:5500/index.html#"><span>V</span>aishnavi</a>
+          </div>
+              <div class="nav-toggler">
+                <span></span>
+              </div>
+
+           <ul class="nav">
+            <li><a href="http://127.0.0.1:5500/index.html#home" class="active"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#about"><i class="fa fa-user"></i> About</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#service"><i class="fa fa-list"></i> Service </a></li>
+
+            <li><a href="http://127.0.0.1:5500/index.html#contact"><i class="fa fa-comments"></i> Contact</a></li>
+           </ul>
+        </div>
+         <!---------Aside End------->
+          <!---------Main Content Start------->
+          <div class="main-content">
+             <!---------Home Section start------->
+             <section class="home section " id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="home-info padd-15">
+                        <h3 class="hello">Hello, My name is <span class="name">Vaishnavi</span></h3>
+                       <h3 class="my profession"> I'm a <span class="typing">Web Dev</span><span class="typed-cursor" aria-hidden="true">|</span></h3>
+                   <p> Highly motivated and former graduate from Anna University, seeking a challenging and dynamic role 
+                    that leverages my interpersonal skill and academic background. </p>
+                    <a href="http://127.0.0.1:5500/index.html#contact" class="btn hire-me">Hire Me</a>
+                    </div>
+                    <div class="home-img padd-15">
+                        <img src="./Portfolio Website_files/user png.png">
+                    </div>
+                </div>
+            </div>
+             </section>
+            
+             <!---------Home Section End------->
+             <!---------About Section Start------->
+             <section class="about section " id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>About Me</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="about-text padd-15">
+                                <h3>I am Vaishnavi and <span>Graduated in 2023</span></h3>
+                                <p>A recent graduate in Pharmaceutical Technology from Anna University,Chennai.
+                                 Eager to contribute to a team-oriented environment where effective communication, 
+                                 collaboration, and relationship-building are valued.I bring 3months of experience in
+                                Software testing, where I got strong foundation in CORE JAVA, SDLC &amp; STLC, Selenium, GITHUB etc.,. 
+                                My journey has equipped me with a deep understanding of Web development and Software testing.I also had a 
+                                lot of industrial exposure of pharmaceutical Companies, through months of Internships.It makes me to expertise
+                                in Manufacturing Processes and Technologies.</p>
+                            </div>
+                        </div>
+                        <div class="left">
+                            <h3 class="personal-info padd-15">Basic Information</h3>
+                            <div class="info-item padd-15">
+                                <p>Date of Birth : <span> 18th November , 2001.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>Age : <span> 22.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>Mail : <span> vvaishnavi850@gmail.com.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>Phone : <span>+91 636 911 5710.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>Degree : <span> Btech Pharmaceutical Technology.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>City : <span> Mayiladuthurai.</span></p>
+                            </div>
+                            <div class="info-item padd-15">
+                                <p>Freelance : <span> Available.</span></p>
+                            </div>
+                        </div>
+                        <div class="right "> 
+                            <h3 class="personal-skills padd-15">Skills</h3>
+                                <div class="row">
+
+                                    <div class="skill-item padd-15">
+                                        <h5>CSS</h5>
+                                        <div class="progress">
+                                            <div class="progress-in" style="width: 70%;"></div>
+                                            <div class="skill-percent">70%
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill-item padd-15">
+                                        <h5>HTMl</h5>
+                                        <div class="progress">
+                                            <div class="progress-in" style="width: 75%;"></div>
+                                            <div class="skill-percent">75%
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill-item padd-15">
+                                        <h5>JAVA</h5>
+                                        <div class="progress">
+                                            <div class="progress-in" style="width: 95%;"></div>
+                                            <div class="skill-percent">95%
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item padd-15">
+                                        <h5>SELENIUM</h5>
+                                        <div class="progress">
+                                            <div class="progress-in" style="width: 90%;"></div>
+                                            <div class="skill-percent">90%
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="skill-item padd-15">
+                                        <h5>OOPS</h5>
+                                        <div class="progress">
+                                            <div class="progress-in" style="width: 80%;"></div>
+                                            <div class="skill-percent">80%
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="education padd-15">
+                                <h3 class="title">Education</h3>
+                                <div class="row">
+                                    <div class="timeline-box padd-15">
+                                        <div class="timeline shadow-dark">
+                                            <!------timeline item-------->
+                                            <div class="timeline-item">
+                                                <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date"> 
+                                                    <i class="fa fa-months"></i>2019 - 2023
+                                                </h3>
+                                                <h4 class="timeline-title">BACHELORS IN PHARMACEUTICAL TECHNOLOGY</h4>
+                                                <p class="timeline-text">A four year undergraduate programme  with CGPA of <span>8.27</span>,
+                                                     gained hands-on experience in pharmaceutical processes, drug development, 
+                                                     knowledge of pharmacokinetics and drug metabolism and cutting-edge
+                                                     technologies shaping the future of healthcare  </p>
+                                                </div>
+
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                        <h3 class="timeline-date"> 
+                                                        <i class="fa fa-months"></i>2018 - 2019
+                                                    </h3>
+                                                    <h4 class="timeline-title">HSC</h4>
+                                                    <p class="timeline-text">A Higher Secondary Certificate with percentage of <span>86.67</span>,
+                                                        under Mathematics-Biology with vast knowledge of Biology,Physiology and Mathematical skills. </p>
+                                                    </div>
+
+                                                    <div class="timeline-item">
+                                                        <div class="circle-dot"></div>
+                                                            <h3 class="timeline-date"> 
+                                                            <i class="fa fa-months"></i>2016 - 2017
+                                                        </h3>
+                                                        <h4 class="timeline-title">SSLC</h4>
+                                                        <p class="timeline-text">A Secondary School Leaving Certificate with percentage of 
+                                                            <span>99</span>, with proficiency in core subjects and basic mathematical knowledge. </p>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="experience padd-15">
+                                <h3 class="title">Experience</h3>
+                                <div class="row">
+                                    <div class="timeline-box padd-15">
+                                        <div class="timeline shadow-dark">
+                                            <!------timeline item-------->
+                                            <div class="timeline-item">
+                                                <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date"> 
+                                                    <i class="fa fa-months"></i> Software Testing Intern
+                                                </h3>
+                                                <h4 class="timeline-title">INMAKES INFOTECH PRIVATE LIMITED , KOCHI.</h4>
+                                                <p class="timeline-text">  Hands-on experience in software testing processes.
+                                                actively participated in testing software applications, identifying and documenting bugs,
+                                                SDLC &amp; STLC , testing methodologies, test automation tools and
+                                                defect tracking systems, keen understanding of the software development lifecycle and
+                                                the importance of ensuring software reliability.</p>
+                                                </div>
+
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                        <h3 class="timeline-date"> 
+                                                        <i class="fa fa-months"></i> Student Intern(Internship)
+                                                    </h3>
+                                                    <h4 class="timeline-title">SAI MIRRA INNOPHARM PRIVATE LIMITED , CHENNAI. </h4>
+                                                    <p class="timeline-text"> Various facets of the company's operations,
+                                                     gaining hands-on experience in pharmaceutical research,Solid dosage forms, development, and production.
+                                                     Manufacturing technologies, machines and research, and certified.</p>
+                                                    </div>
+
+                                                    <div class="timeline-item">
+                                                        <div class="circle-dot"></div>
+                                                            <h3 class="timeline-date"> 
+                                                            <i class="fa fa-months"></i> Student Intern(Implant)
+                                                        </h3>
+                                                        <h4 class="timeline-title">DEXTER FORMULATIONS PRIVATE LIMITED , MAYILADUTHURAI. </h4>
+                                                        <p class="timeline-text"> SOP management, Database handling , Manufacturing pocesses 
+                                                            of liquid dosage forms, and certified.  </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </section>
+                                        <!---------About Section End----------->
+                       <!----------Service Section Start----------------->
+                       <section class="service section" id="service">
+                        <div class="container">
+                            <div class="row">
+                                <div class="section-title padd-15">
+                                    <h2>Services</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-------Services item start------------->
+                
+                                <div class="service-item padd-15">
+                                    <div class="service-item-inner">
+                                        <div class="icon">
+                                            <i class="fa fa-tablets"></i>
+                                        </div>
+                                        <h4> Pharmaceuticals</h4>
+                                 
+                                       <p>Manufacturing pocesses and technologies,Various dosage forms. </p>
+                                    </div>
+                                </div>
+
+                                <div class="service-item padd-15">
+                                    <div class="service-item-inner">
+                                        <div class="icon">
+                                            <i class="fa fa-laptop-code"></i>
+                                        </div>
+                                        <h4>Software Testing</h4>
+                                        <p>Capstone project (Manually tested the live website)</p>
+                                    </div>
+                                </div>
+
+                                <div class="service-item padd-15">
+                                    <div class="service-item-inner">
+                                        <div class="icon">
+                                            <i class="fa fa-mobile-alt"></i>
+                                        </div>
+                                        <h4>Web Design</h4>
+                                        <p>Portfolio using front-end tools  like JAVA , HTML ,
+                                            CSS, JS, etc.     
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="service-item padd-15">
+                                    <div class="service-item-inner">
+                                        <div class="icon">
+                                            <i class="fa fa-dna"></i>
+                                        </div>
+                                        <h4>Enzyme purification</h4>
+                                        <p>Expression and Purification of Recombinant Creatininase Enzyme</p>
+                                    </div>
+                                </div>
+
+                                 <!-------Services item End------------->
+                            </div>
+
+                        </div>
+
+                       </section>
+                          <!----------Service Section End----------------->
+                           <!----------Contact Section Start----------------->
+
+                           <section class="contact section" id="contact">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="section-title padd-15">
+                                       <h2>Contact Me</h2>
+                                    </div>
+                                </div>
+                                <h3 class="contact-title1 padd-15">DO YOU HAVE ANY QUESTIONS?</h3>
+                                
+                                <div class="row">
+                                    <!--------Contact Info item Start--------------->
+                                   <div class="contact-info-item padd-15">
+                                    <div class="icon"><i class="fa fa-phone"></i></div>
+                                    <h4>Call Us on</h4>
+                                    <p>+91 636 911 5710</p>
+                                   </div>
+                                       
+                                   <div class="contact-info-item padd-15">
+                                    <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
+                                    <h4>City</h4>
+                                    <p>Mayiladuthurai</p>
+                                   </div>
+                                    
+                                   <div class="contact-info-item padd-15">
+                                    <div class="icon"><i class="fa fa-envelope"></i></div>
+                                    <h4>Email</h4>
+                                    <p>vvaishnavi850@gmail.com</p>
+                                   </div>
+
+
+                                    <!--------Contact Info item Start--------------->
+                                </div>
+                            </div>
+                           </section>
+                            <!----------Contact Section End----------------->
+                             </div>
+                             <h3 class="contact-title2 padd-15">SEND ME EMAIL FOR YOUR QUERY</h3>
+                              
+                             <form name="submit-to-google-sheet">
+                             
+                             <div class="row">
+                             <!---------Contact form------------->
+                              
+
+                                <div class="contact-form padd-15">
+                                    <div class="row">
+                                        <div class="form-item col-6 padd-15">
+                                            <div class="form-group">
+                                                <input type="text" name="Name" class="form-control" placeholder="Name">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-item col-6 padd-15">
+                                            <div class="form-group">
+                                                <input type="email" name="Email" class="form-control" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-item col-12 padd-15">
+                                            <div class="form-group">
+                                                <input type="text" name="Subject" class="form-control" placeholder="Subject">
+                                            </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="form-item col-12 padd-15">
+                                            <div class="form-group">
+                                     <textarea name="Message" class="form-control" id="" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="form-item col-12 padd-15">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn">SEND MESSAGE</button>
+                                                
+                                            </div>
+                                        </div>
+                                      </div>
+                                    
+
+                                    </div>
+                                
+                                
+                              
+                                  
+                                  <script>
+                                    const scriptURL = 'https://script.google.com/macros/s/AKfycbyzbVNLmKJRhioSefN5dMhdCpqE6OEmlIdntf3NgZYbyz6o9pcKsjOMdxp_cZwAa1aQ/exec'
+                                    const form = document.forms['submit-to-google-sheet']
+                                  
+                                    form.addEventListener('submit', e => {
+                                      e.preventDefault()
+                                      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                                        .then(response => console.log('Success!', response))
+                                        .catch(error => console.error('Error!', error.message))
+                                    })
+                                  </script>
+
+                             </div></form>
+                            
+                                    <!---------Main Content End--------------->
+                                </div>
+                            <!--------------Main Container End---------------->
+                            <!--------------Style switcher start---------------->
+
+                            <div class="style-switcher">
+                                <div class="style-switcher-toggler s-icon">
+                                    <i class="fas-fa-cog fa-spin"></i>
+                                </div>
+                                <div class="day-night s-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                            </div>
+                            <!--------------Style switcher End---------------->
+                          
+                            
+
+
+
+                            <!---------------JS Files---------------------->   
+                            <script src="./Portfolio Website_files/typed.umd.js.download" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>   
+    <script src="./Portfolio Website_files/script.js.download"></script><style data-typed-js-cursor-css="true">
+        .typed-cursor{
+          opacity: 1;
+        }
+        .typed-cursor.typed-cursor--blink{
+          animation: typedjsBlink 0.7s infinite;
+          -webkit-animation: typedjsBlink 0.7s infinite;
+                  animation: typedjsBlink 0.7s infinite;
+        }
+        @keyframes typedjsBlink{
+          50% { opacity: 0.0; }
+        }
+        @-webkit-keyframes typedjsBlink{
+          0% { opacity: 1; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1; }
+        }
+      </style>   
+    <script src="./Portfolio Website_files/style-switcher.js.download"></script> 
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+ <div>
+    <div id="twoseven-ext-tab-media-modal" class="twoseven-ext-tab-media-modal" style="display: none;">
+      <!-- Modal content -->
+      <div class="twoseven-ext-tab-media-modal-content">
+        <div class="iframe-container" style="height: 100%; width: 100%;">
+          <span class="close">×</span>
+        </div>
+      </div>
+    </div></div><audio class="audio-output" style="display: none;"></audio><div id="volume-booster-visusalizer">
+                    <div class="sound">
+                        <div class="sound-icon"></div>
+                        <div class="sound-wave sound-wave_one"></div>
+                        <div class="sound-wave sound-wave_two"></div>
+                        <div class="sound-wave sound-wave_three"></div>
+                    </div>
+                    <div class="segments-box">
+                        <div data-range="1-20" class="segment"><span></span></div>
+                        <div data-range="21-40" class="segment"><span></span></div>
+                        <div data-range="41-60" class="segment"><span></span></div>
+                        <div data-range="61-80" class="segment"><span></span></div>
+                        <div data-range="81-100" class="segment"><span></span></div>
+                    </div>
+                </div></body></html>
